@@ -29,7 +29,33 @@ body {
   min-height: 100vh;
 }
 
+html {
+  font-size: 10px;
+}
+
+@media screen and (768 <=width) and (width < 992) {
+  html {
+    font-size: 9px !important;
+  }
+}
+
+@media screen and (600 <=width) and (width < 768) {
+  html {
+    font-size: 8px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 7px !important;
+  }
+}
+
 header {
   background-color: var(--mui-palette-background-paper);
   padding: 15px 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
