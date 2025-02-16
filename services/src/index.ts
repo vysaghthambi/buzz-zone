@@ -6,18 +6,18 @@ import db from "./lib/db";
 
 import authenticateToken from "./middlewares/authenticateToken";
 import errorHandler from "./middlewares/errorHandler";
+import userRouter from "./router/userRouter";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env.local") });
 
 const PORT = process.env.PORT;
 const app = express();
 
+app.use(express.json());
+
 app.use(authenticateToken);
 
-app.get("/user", (req, res) => {
-  console.log("user called");
-  res.status(200).json({ message: "Got it" });
-});
+app.use("/user", userRouter);
 
 app.use(errorHandler);
 
