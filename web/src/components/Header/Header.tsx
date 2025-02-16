@@ -12,7 +12,7 @@ import { signInWithGoogle, signOut } from "../../lib/firebase/auth";
 import { useUser } from "../../context/UserContext";
 
 export default function Header() {
-  const { user } = useUser();
+  const { authUser } = useUser();
 
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -26,19 +26,19 @@ export default function Header() {
         </Typography>
       </Stack>
 
-      {!user ? (
+      {!authUser ? (
         <Button variant="outlined" color="secondary" onClick={signInWithGoogle}>
           Login
         </Button>
       ) : (
         <Stack flexDirection="row" alignItems="center" columnGap={1}>
           <Avatar
-            alt={user.displayName ?? "profile"}
-            src={user.photoURL ?? ""}
+            alt={authUser.displayName ?? "profile"}
+            src={authUser.photoURL ?? ""}
             sx={{ height: { xs: 30, md: 40 }, width: { xs: 30, md: 40 } }}
           />
           {!isSmallScreen && (
-            <Typography variant="h2">{user.displayName}</Typography>
+            <Typography variant="h2">{authUser.displayName}</Typography>
           )}
           <IconButton size="large" onClick={signOut}>
             <LogoutIcon fontSize="large" color="secondary" />

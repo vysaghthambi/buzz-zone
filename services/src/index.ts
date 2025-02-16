@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
+import cors from "cors";
 
 import db from "./lib/db";
 
@@ -15,6 +16,8 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(express.json());
+
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.use(authenticateToken);
 
