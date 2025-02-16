@@ -7,6 +7,7 @@ import db from "./lib/db";
 import authenticateToken from "./middlewares/authenticateToken";
 import errorHandler from "./middlewares/errorHandler";
 import userRouter from "./router/userRouter";
+import postRouter from "./router/postRouter";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env.local") });
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(authenticateToken);
 
 app.use("/user", userRouter);
+app.use("/posts", postRouter);
 
 app.use(errorHandler);
 
